@@ -4,7 +4,6 @@ namespace Drupal\leaflet_entity_browser\Plugin\views\style;
 
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 use Drupal\leaflet_views\Plugin\views\style\LeafletMap;
 
 /**
@@ -31,14 +30,14 @@ class LeafletEntityBrowserMap extends LeafletMap {
     parent::buildOptionsForm($form, $form_state);
 
     $form['icon']['iconUrl']['#weight'] = -34;
-    $form['icon']['selectedIconUrl'] = array(
+    $form['icon']['selectedIconUrl'] = [
       '#title' => $this->t('Selected Icon URL'),
       '#description' => $this->t('Can be an absolute or relative URL.'),
       '#type' => 'textfield',
       '#maxlength' => 999,
       '#default_value' => $this->options['icon']['selectedIconUrl'] ?: '',
       '#weight' => -33,
-    );
+    ];
   }
 
   /**
@@ -58,7 +57,7 @@ class LeafletEntityBrowserMap extends LeafletMap {
    * {@inheritdoc}
    */
   public function render() {
-    $data = array();
+    $data = [];
     $geofield_name = $this->options['data_source'];
     if ($this->options['data_source']) {
       $this->renderFields($this->view->result);
@@ -112,9 +111,8 @@ class LeafletEntityBrowserMap extends LeafletMap {
               $module_path = base_path() . drupal_get_path('module', 'leaflet_entity_browser');
               $selected_icon_url = !empty($this->options['icon']['selectedIconUrl']) ? $this->options['icon']['selectedIconUrl'] : $module_path . '/images/marker-icon-selected.png';
               if (empty($this->options['icon']['iconUrl'])) {
-                $point['icon']['iconUrl'] = $module_path . '/images/marker-icon-blue.png'; // Url::fromUserInput('/libraries/leaflet/dist/images/marker-icon.png')->toString();
+                $point['icon']['iconUrl'] = $module_path . '/images/marker-icon-blue.png';
                 $icon_url = $point['icon']['iconUrl'];
-                //list($x, $y) = getimagesize(DRUPAL_ROOT . '/libraries/leaflet/dist/images/marker-icon.png');
                 $point['icon']['iconSize']['x'] = 25;
                 $point['icon']['iconSize']['y'] = 41;
                 $point['icon']['iconAnchor']['x'] = 12;

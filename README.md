@@ -11,3 +11,5 @@ To make this work, you need to apply the following patches to the Leaflet drupal
 - https://www.drupal.org/node/2904707#comment-12235364
 
 Then add an `entity_browser` display to the view as usual, and select "**Leaflet map for Entity Browser**" as the view style plugin.
+
+Configure your map display as usual (add a geofield field, define title / description fields if necessary, etc), and add the "Entity Browser Bulk Select Form" field to the list of fields as well.
